@@ -14,3 +14,8 @@ export enum TooltipTypes {
   ROADBLOCK = "ROADBLOCK",
   PORTAL = "PORTAL",
 }
+
+export type Location = {
+  row: number;
+  col: number;
+};
