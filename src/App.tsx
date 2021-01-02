@@ -9,7 +9,7 @@ function App() {
     <div>
       <Header />
       <div>
-        <Tooltip />
+        <Tooltip hoverColor={"blue"} />
         <Grid />
         <Slider />
       </div>
