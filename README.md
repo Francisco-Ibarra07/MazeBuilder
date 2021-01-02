@@ -14,6 +14,15 @@ The Application is Built using:
 
 Coming soon...
 
+## Todo
+
+[] Define grid data structure
+[] Create gridReducer
+[] Try learning TailwindCSS to style UI
+[] Finish Header component
+[] Finish Tooltip component
+[] Finish slider component
+
 ## Running the App Locally
 
 To Run the app locally you need to install NodeJs on your machine,
