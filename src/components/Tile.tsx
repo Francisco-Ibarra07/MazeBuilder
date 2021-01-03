@@ -14,10 +14,29 @@ function Tile(props: TileProps) {
     onClickHandler(type, location);
   };
 
+  let tileColor = "";
+  switch (type) {
+    case TileType.ROAD:
+      tileColor = `bg-green-400`;
+      break;
+    case TileType.BLOCKADE:
+      tileColor = "bg-blue-400";
+      break;
+    case TileType.FLAG:
+      tileColor = "bg-purple-400";
+      break;
+    case TileType.ROADBLOCK:
+      tileColor = "bg-orange-400";
+      break;
+  }
+
   return (
-    <button className="bg-blue-400" onClick={handleClick}>
-      {type}
-    </button>
+    <button
+      className={
+        tileColor + " border-solid border-2 border-black hover:opacity-80"
+      }
+      onClick={handleClick}
+    ></button>
   );
 }
 
