@@ -6,7 +6,7 @@ import Toolbox from "./components/Toolbox";
 
 function App() {
   return (
-    <div className="bg-gray-700 py-4">
+    <div className="bg-gray-100 py-4">
       <Header />
       <div className="flex justify-between">
         <Toolbox />

@@ -35,8 +35,8 @@ function Toolbox(props: TooltipProps) {
         width={50}
       />
       <ToolButton
-        iconUrl="https://cdn3.iconfinder.com/data/icons/leto-design-tools/64/__clear_eraser_rubber-512.png"
-        label="Clear"
+        iconUrl="https://cdn3.iconfinder.com/data/icons/education-801/64/Eraser-Remove-Paper-Pencil-256.png"
+        label="Erase"
         width={50}
       />
     </div>

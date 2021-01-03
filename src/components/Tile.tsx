@@ -15,8 +15,8 @@ function Tile(props: TileProps) {
   };
 
   return (
-    <div className="tile-container" onClick={handleClick}>
-      <p>Tile type: {type}</p>
+    <div className="bg-blue-400 w-8 border-gray-400" onClick={handleClick}>
+      T
     </div>
   );
 }
