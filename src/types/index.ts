@@ -15,7 +15,7 @@ export enum TooltipTypes {
   PORTAL = "PORTAL",
 }
 
-export type Location = {
+export interface Location {
   row: number;
   col: number;
-};
+}
