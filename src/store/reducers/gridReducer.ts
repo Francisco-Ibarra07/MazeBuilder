@@ -7,27 +7,38 @@ import {
   UPDATE_TILE,
 } from "../actions/gridActions";
 
-function createInitialGrid(): TileType[][] {
+function createGrid(targetSize: number): TileType[][] {
   let grid: TileType[][] = [];
-  const DEFAULT_SIZE = 2;
 
-  for (let i = 0; i < DEFAULT_SIZE; i++) {
+  for (let i = 0; i < targetSize; i++) {
     grid[i] = new Array<TileType>();
-    for (let j = 0; j < DEFAULT_SIZE; j++) {
+    for (let j = 0; j < targetSize; j++) {
       grid[i].push(TileType.BLOCKADE);
     }
   }
 
   return grid;
 }
-const initialState: TileType[][] = createInitialGrid();
+
+const max = 8;
+const min = 2;
+const initialSize = 4;
+const initialState: TileType[][] = createGrid(initialSize);
 
 const gridReducer = (state = initialState, action: GridActionTypes) => {
   switch (action.type) {
     case EXPAND_GRID:
-      return state;
+      if (state.length + 1 > max) {
+        return state;
+      }
+
+      return createGrid(state.length + 1);
     case SHRINK_GRID:
-      return state;
+      if (state.length - 1 < min) {
+        return state;
+      }
+
+      return createGrid(state.length - 1);
     case UPDATE_TILE:
       const { newType, location } = action.payload;
       const grid = state;
@@ -53,7 +64,6 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
       });
 
       return newGrid;
-
     default:
       return state;
   }

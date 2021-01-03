@@ -6,12 +6,10 @@ export const UPDATE_TILE = "UPDATE_TILE";
 
 interface ExpandGridAction {
   type: typeof EXPAND_GRID;
-  payload: number;
 }
 
-interface ShrinkGridACtion {
+interface ShrinkGridAction {
   type: typeof SHRINK_GRID;
-  payload: number;
 }
 
 interface UpdateTileAction {
@@ -24,20 +22,18 @@ interface UpdateTileAction {
 
 export type GridActionTypes =
   | ExpandGridAction
-  | ShrinkGridACtion
+  | ShrinkGridAction
   | UpdateTileAction;
 
-export function expandGrid(num: number): GridActionTypes {
+export function expandGrid(): GridActionTypes {
   return {
     type: EXPAND_GRID,
-    payload: num,
   };
 }
 
-export function shrinkGrid(num: number): GridActionTypes {
+export function shrinkGrid(): GridActionTypes {
   return {
     type: SHRINK_GRID,
-    payload: num,
   };
 }
 
