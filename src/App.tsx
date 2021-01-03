@@ -2,17 +2,17 @@ import React from "react";
 import Grid from "./components/Grid";
 import Header from "./components/Header";
 import Slider from "./components/Slider";
-import Tooltip from "./components/Tooltip";
+import Toolbox from "./components/Toolbox";
 
 function App() {
   return (
-    <div>
+    <div className="bg-gray-700 py-4">
       <Header />
-      <div>
-        <Tooltip hoverColor={"blue"} />
+      <div className="flex justify-between">
+        <Toolbox />
         <Grid />
-        <Slider />
       </div>
+      <Slider />
     </div>
   );
 }
