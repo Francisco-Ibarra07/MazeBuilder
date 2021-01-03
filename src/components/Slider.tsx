@@ -2,6 +2,7 @@ import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { expandGrid, shrinkGrid } from "../store/actions/gridActions";
+import { resetFlags } from "../store/actions/flagActions";
 
 // Connect Redux
 const mapStateToProps = (state: RootState) => ({
@@ -16,10 +17,12 @@ function Slider(props: SliderProps) {
 
   const handleDecrement = () => {
     dispatch(shrinkGrid());
+    dispatch(resetFlags());
   };
 
   const handleIncrement = () => {
     dispatch(expandGrid());
+    dispatch(resetFlags());
   };
 
   return (
