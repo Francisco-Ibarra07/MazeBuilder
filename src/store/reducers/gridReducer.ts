@@ -9,11 +9,11 @@ import {
 
 function createInitialGrid(): TileType[][] {
   let grid: TileType[][] = [];
-  const DEFAULT_SIZE = 8;
+  const DEFAULT_SIZE = 2;
 
-  for (let i = 0; i <= DEFAULT_SIZE; i++) {
+  for (let i = 0; i < DEFAULT_SIZE; i++) {
     grid[i] = new Array<TileType>();
-    for (let j = 0; j <= DEFAULT_SIZE; j++) {
+    for (let j = 0; j < DEFAULT_SIZE; j++) {
       grid[i].push(TileType.INACTIVE);
     }
   }
@@ -38,9 +38,21 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
         return state;
       }
 
-      grid[location.row][location.col] = newType;
-      console.log("Updated");
-      return grid;
+      const newGrid = grid.map((row, index) => {
+        if (index === location.row) {
+          return row.map((item, index) => {
+            if (index === location.col) {
+              return newType;
+            } else {
+              return item;
+            }
+          });
+        } else {
+          return row;
+        }
+      });
+
+      return newGrid;
 
     default:
       return state;
