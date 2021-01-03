@@ -19,8 +19,7 @@ function App() {
               {/* Grid Container */}
               <div className="w-full h-5/6 bg-blue-600">
                 <div className="flex justify-center items-center h-full">
-                  <h1>Grid Area</h1>
-                  {/* <Grid /> */}
+                  <Grid />
                 </div>
               </div>
               {/* Slider container */}

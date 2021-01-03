@@ -1,9 +1,9 @@
 import React from "react";
+import Tile from "./Tile";
 import { Location, TileType } from "../types";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { updateTile } from "../store/actions/gridActions";
-import Tile from "./Tile";
 
 // Connect Redux
 const mapStateToProps = (state: RootState) => ({
@@ -24,20 +24,34 @@ function Grid(props: GridProps) {
     }
   };
 
+  const styles = {
+    gridContainer: {
+      gridTemplateRows: `repeat(${grid.length}, minmax(0, 1fr)`,
+      gridTemplateColumns: `repeat(${grid.length}, minmax(0, 1fr)`,
+    },
+  };
+
   return (
-    <div className="">
-      {grid.map((row, rowIndex) => (
-        <div className="flex" key={`row-${rowIndex}`}>
-          {row.map((value, colIndex) => (
-            <Tile
-              key={`col-${colIndex}`}
-              type={value}
-              location={{ row: rowIndex, col: colIndex }}
-              onClickHandler={tileClickHandler}
-            />
-          ))}
-        </div>
-      ))}
+    <div
+      className="bg-pink-500 w-full h-full grid"
+      style={styles.gridContainer}
+    >
+      <div>Item1</div>
+      <div>Item2</div>
+      <div>Item3</div>
+      <div>Item4</div>
+      <div>Item5</div>
+      <div>Item6</div>
+      <div>Item7</div>
+      <div>Item8</div>
+      <div>Item9</div>
+      <div>Item10</div>
+      <div>Item11</div>
+      <div>Item12</div>
+      <div>Item13</div>
+      <div>Item13</div>
+      <div>Item6</div>
+      <div>Item7</div>
     </div>
   );
 }
