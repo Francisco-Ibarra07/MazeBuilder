@@ -2,9 +2,9 @@ import React from "react";
 
 function Header() {
   return (
-    <div className="pt-2 pb-5 flex justify-center">
-      <div className="bg-yellow-300 p-3 rounded-lg text-2xl font-mono">
-        <h1>Maze Builder</h1>
+    <div className="py-5 flex justify-center">
+      <div className="bg-yellow-300 p-3 rounded-lg text-5xl">
+        <p>Maze Builder</p>
       </div>
     </div>
   );

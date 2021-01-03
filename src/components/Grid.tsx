@@ -25,7 +25,7 @@ function Grid(props: GridProps) {
   };
 
   return (
-    <div className="bg-yellow-300 rounded-lg">
+    <div className="">
       {grid.map((row, rowIndex) => (
         <div className="flex" key={`row-${rowIndex}`}>
           {row.map((value, colIndex) => (
