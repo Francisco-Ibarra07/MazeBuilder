@@ -14,7 +14,7 @@ function createInitialGrid(): TileType[][] {
   for (let i = 0; i < DEFAULT_SIZE; i++) {
     grid[i] = new Array<TileType>();
     for (let j = 0; j < DEFAULT_SIZE; j++) {
-      grid[i].push(TileType.INACTIVE);
+      grid[i].push(TileType.BLOCKADE);
     }
   }
 

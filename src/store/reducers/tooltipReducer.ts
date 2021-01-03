@@ -1,7 +1,7 @@
-import { TooltipTypes } from "../../types";
+import { TileType } from "../../types";
 import { ToolActionTypes, CHANGE_TOOL } from "../actions/tooltipActions";
 
-const initialState = TooltipTypes.ROAD;
+const initialState = TileType.ROAD;
 
 const tooltipReducer = (state = initialState, action: ToolActionTypes) => {
   switch (action.type) {

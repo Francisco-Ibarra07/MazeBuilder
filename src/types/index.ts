@@ -1,17 +1,8 @@
 export enum TileType {
-  INACTIVE = "INACTIVE",
-  ACTIVE = "ACTIVE",
-  ROADBLOCK = "ROADBLOCK",
-  START = "START",
-  FINISH = "FINISH",
-  PORTAL = "PORTAL",
-}
-
-export enum TooltipTypes {
-  FLAG = "FLAG",
-  ROAD = "ROAD",
-  CLEAR = "CLEAR",
-  ROADBLOCK = "ROADBLOCK",
+  BLOCKADE = "BLOCKADE", // invalid path
+  ROAD = "ROAD", // valid pathway
+  FLAG = "FLAG", // start or finish marker
+  ROADBLOCK = "ROADBLOCK", // still looks like a road but is blocked
   PORTAL = "PORTAL",
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { TooltipTypes } from "../types";
+import { TileType } from "../types";
 import { connect, ConnectedProps } from "react-redux";
 import { changeTool } from "../store/actions/tooltipActions";
 
@@ -13,7 +13,8 @@ type TooltipProps = PropsFromRedux & {
 function Tooltip(props: TooltipProps) {
   const { dispatch } = props;
   const handleClick = () => {
-    dispatch(changeTool(TooltipTypes.CLEAR));
+    // TODO: change val based on what is click on
+    dispatch(changeTool(TileType.BLOCKADE));
     console.log("Changed tool");
   };
 
