@@ -20,8 +20,8 @@ function createGrid(targetSize: number): TileType[][] {
   return grid;
 }
 
-const max = 8;
-const min = 2;
+const max = 15;
+const min = 4;
 const initialSize = 4;
 const initialState: TileType[][] = createGrid(initialSize);
 
@@ -45,7 +45,6 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
 
       // If row and col are out of bounds just return
       if (!isInBounds(grid, location.row, location.col)) {
-        console.log("Out of bounds", location, state);
         return state;
       }
 
