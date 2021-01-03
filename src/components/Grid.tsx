@@ -24,6 +24,24 @@ function Grid(props: GridProps) {
     }
   };
 
+  const flattenGrid = (): JSX.Element[] => {
+    let list: JSX.Element[] = [];
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid[row].length; col++) {
+        list.push(
+          <Tile
+            key={`tile-row${row}-col${col}`}
+            type={grid[row][col]}
+            location={{ row, col }}
+            onClickHandler={tileClickHandler}
+          />
+        );
+      }
+    }
+
+    return list;
+  };
+
   const styles = {
     gridContainer: {
       gridTemplateRows: `repeat(${grid.length}, minmax(0, 1fr)`,
@@ -36,22 +54,7 @@ function Grid(props: GridProps) {
       className="bg-pink-500 w-full h-full grid"
       style={styles.gridContainer}
     >
-      <div>Item1</div>
-      <div>Item2</div>
-      <div>Item3</div>
-      <div>Item4</div>
-      <div>Item5</div>
-      <div>Item6</div>
-      <div>Item7</div>
-      <div>Item8</div>
-      <div>Item9</div>
-      <div>Item10</div>
-      <div>Item11</div>
-      <div>Item12</div>
-      <div>Item13</div>
-      <div>Item13</div>
-      <div>Item6</div>
-      <div>Item7</div>
+      {flattenGrid()}
     </div>
   );
 }
