@@ -1,14 +1,15 @@
-import { CONSTANTS } from "./index";
 import { TooltipTypes } from "../../types";
 
+export const CHANGE_TOOL = "CHANGE_TOOL";
+
 interface ChangeToolAction {
-  type: string;
+  type: typeof CHANGE_TOOL;
   payload: TooltipTypes;
 }
 
 export function changeTool(newTool: TooltipTypes): ToolActionTypes {
   return {
-    type: CONSTANTS.CHANGE_TOOL,
+    type: CHANGE_TOOL,
     payload: newTool,
   };
 }

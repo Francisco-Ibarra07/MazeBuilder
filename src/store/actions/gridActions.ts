@@ -1,18 +1,21 @@
-import { CONSTANTS } from "./index";
 import { Location, TileType } from "../../types";
 
+export const EXPAND_GRID = "EXPAND_GRID";
+export const SHRINK_GRID = "SHRINK_GRID";
+export const UPDATE_TILE = "UPDATE_TILE";
+
 interface ExpandGridAction {
-  type: string;
+  type: typeof EXPAND_GRID;
   payload: number;
 }
 
 interface ShrinkGridACtion {
-  type: string;
+  type: typeof SHRINK_GRID;
   payload: number;
 }
 
 interface UpdateTileAction {
-  type: string;
+  type: typeof UPDATE_TILE;
   payload: {
     newType: TileType;
     location: Location;
@@ -26,14 +29,14 @@ export type GridActionTypes =
 
 export function expandGrid(num: number): GridActionTypes {
   return {
-    type: CONSTANTS.EXPAND_GRID,
+    type: EXPAND_GRID,
     payload: num,
   };
 }
 
 export function shrinkGrid(num: number): GridActionTypes {
   return {
-    type: CONSTANTS.SHRINK_GRID,
+    type: SHRINK_GRID,
     payload: num,
   };
 }
@@ -43,7 +46,7 @@ export function updateTile(
   location: Location
 ): GridActionTypes {
   return {
-    type: CONSTANTS.UPDATE_TILE,
+    type: UPDATE_TILE,
     payload: {
       newType,
       location,
