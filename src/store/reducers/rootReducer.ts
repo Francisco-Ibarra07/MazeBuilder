@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import tooltipReducer from "./tooltipReducer";
 import gridReducer from "./gridReducer";
+import flagReducer from "./flagReducer";
+import tooltipReducer from "./tooltipReducer";
 
 export const rootReducer = combineReducers({
-  tooltip: tooltipReducer,
   grid: gridReducer,
+  tooltip: tooltipReducer,
+  flagLocations: flagReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
