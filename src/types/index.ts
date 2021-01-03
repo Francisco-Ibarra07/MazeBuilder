@@ -1,10 +1,10 @@
 export enum TileType {
-  INACTIVE,
-  ACTIVE,
-  ROADBLOCK,
-  START,
-  FINISH,
-  PORTAL,
+  INACTIVE = "INACTIVE",
+  ACTIVE = "ACTIVE",
+  ROADBLOCK = "ROADBLOCK",
+  START = "START",
+  FINISH = "FINISH",
+  PORTAL = "PORTAL",
 }
 
 export enum TooltipTypes {
