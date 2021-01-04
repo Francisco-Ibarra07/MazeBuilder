@@ -74,7 +74,7 @@ function Grid(props: GridProps) {
 
   return (
     <div
-      className="bg-pink-500 w-full h-full grid"
+      className="w-full h-full grid"
       style={styles.gridContainer}
       onMouseDown={() => setMouseState(MouseState.DOWN)}
       onMouseUp={() => setMouseState(MouseState.UP)}

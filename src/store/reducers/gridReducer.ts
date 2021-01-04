@@ -22,7 +22,7 @@ function createGrid(targetSize: number): TileType[][] {
 
 const max = 15;
 const min = 4;
-const initialSize = 4;
+const initialSize = 6;
 const initialState: TileType[][] = createGrid(initialSize);
 
 const gridReducer = (state = initialState, action: GridActionTypes) => {

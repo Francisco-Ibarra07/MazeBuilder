@@ -34,7 +34,9 @@ function Slider(props: SliderProps) {
         >
           -
         </button>
-        <p className="text-lg">{grid.length}</p>
+        <p className="text-lg">
+          {grid.length}x{grid.length}
+        </p>
         <button
           className="rounded w-6 bg-red-400 mx-2"
           onClick={handleIncrement}

@@ -46,7 +46,7 @@ function Tile(props: TileProps) {
 
   return (
     <button
-      className={tileColor + " hover:opacity-80 " + borders}
+      className={tileColor + " hover:opacity-40 " + borders}
       onClick={handleClick}
       onMouseOver={onMouseOver}
     ></button>
