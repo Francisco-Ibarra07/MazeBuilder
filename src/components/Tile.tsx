@@ -4,12 +4,19 @@ import { Location, TileType } from "../types";
 type TileProps = {
   type: TileType;
   location: Location;
+  showBorders?: boolean;
   onClickHandler: (type: TileType, location: Location) => void;
   onMouseOverHandler: (type: TileType, location: Location) => void;
 };
 
 function Tile(props: TileProps) {
-  const { type, location, onClickHandler, onMouseOverHandler } = props;
+  const {
+    type,
+    location,
+    showBorders,
+    onClickHandler,
+    onMouseOverHandler,
+  } = props;
 
   const handleClick = () => {
     onClickHandler(type, location);
@@ -35,11 +42,11 @@ function Tile(props: TileProps) {
       break;
   }
 
+  let borders = showBorders ? "border-solid border-2 border-black" : "";
+
   return (
     <button
-      className={
-        tileColor + " border-solid border-2 border-black hover:opacity-80"
-      }
+      className={tileColor + " hover:opacity-80 " + borders}
       onClick={handleClick}
       onMouseOver={onMouseOver}
     ></button>

@@ -56,6 +56,7 @@ function Grid(props: GridProps) {
             location={{ row, col }}
             onClickHandler={tileClickHandler}
             onMouseOverHandler={onMouseOverHandler}
+            showBorders
           />
         );
       }
