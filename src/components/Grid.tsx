@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Tile from "./Tile";
-import { Location, TileType } from "../types";
+import { Location, MouseState, TileType } from "../types";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { updateTile } from "../store/actions/gridActions";
@@ -18,6 +18,7 @@ type GridProps = PropsFromRedux;
 
 function Grid(props: GridProps) {
   const { dispatch, grid, tooltip, flagLocations } = props;
+  const [mouseState, setMouseState] = useState<MouseState>(MouseState.UP);
 
   const tileClickHandler = (currTileType: TileType, location: Location) => {
     if (tooltip === currTileType) {
@@ -34,6 +35,16 @@ function Grid(props: GridProps) {
     dispatch(updateTile(tooltip, location));
   };
 
+  const onMouseOverHandler = (currTileType: TileType, location: Location) => {
+    if (tooltip === TileType.ROADBLOCK || tooltip === TileType.FLAG) {
+      return;
+    } else if (currTileType === tooltip || mouseState === MouseState.UP) {
+      return;
+    }
+
+    dispatch(updateTile(tooltip, location));
+  };
+
   const flattenGrid = (): JSX.Element[] => {
     let list: JSX.Element[] = [];
     for (let row = 0; row < grid.length; row++) {
@@ -44,6 +55,7 @@ function Grid(props: GridProps) {
             type={grid[row][col]}
             location={{ row, col }}
             onClickHandler={tileClickHandler}
+            onMouseOverHandler={onMouseOverHandler}
           />
         );
       }
@@ -63,6 +75,8 @@ function Grid(props: GridProps) {
     <div
       className="bg-pink-500 w-full h-full grid"
       style={styles.gridContainer}
+      onMouseDown={() => setMouseState(MouseState.DOWN)}
+      onMouseUp={() => setMouseState(MouseState.UP)}
     >
       {flattenGrid()}
     </div>

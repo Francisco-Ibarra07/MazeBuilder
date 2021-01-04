@@ -5,13 +5,18 @@ type TileProps = {
   type: TileType;
   location: Location;
   onClickHandler: (type: TileType, location: Location) => void;
+  onMouseOverHandler: (type: TileType, location: Location) => void;
 };
 
 function Tile(props: TileProps) {
-  const { type, location, onClickHandler } = props;
+  const { type, location, onClickHandler, onMouseOverHandler } = props;
 
   const handleClick = () => {
     onClickHandler(type, location);
+  };
+
+  const onMouseOver = () => {
+    onMouseOverHandler(type, location);
   };
 
   let tileColor = "";
@@ -36,6 +41,7 @@ function Tile(props: TileProps) {
         tileColor + " border-solid border-2 border-black hover:opacity-80"
       }
       onClick={handleClick}
+      onMouseOver={onMouseOver}
     ></button>
   );
 }

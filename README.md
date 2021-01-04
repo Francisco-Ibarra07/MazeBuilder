@@ -14,14 +14,20 @@ The Application is Built using:
 
 Coming soon...
 
-## Todo
+## Todo for mvp
 
-[] Define grid data structure
-[] Create gridReducer
-[] Try learning TailwindCSS to style UI
-[] Finish Header component
-[] Finish Tooltip component
-[] Finish slider component
+- [x] Define grid data structure
+- [x] Create gridReducer
+- [x] Try learning TailwindCSS to style UI
+- [x] Render grid data
+- [x] Disable flag once two are placed down
+- [x] Create flag reducer
+- [x] Add marker for current active tool
+- [x] Add mouseover for easy path building
+- [] Create solve() function
+- [] Finish Header component
+- [] Finish Tooltip component
+- [] Finish slider component
 
 ## Running the App Locally
 
