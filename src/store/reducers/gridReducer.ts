@@ -9,7 +9,7 @@ import {
 } from "../actions/gridActions";
 import Queue from "../../utils/Queue";
 
-function createGrid(targetSize: number): TileType[][] {
+function createNewGrid(targetSize: number): TileType[][] {
   let grid: TileType[][] = [];
 
   for (let i = 0; i < targetSize; i++) {
@@ -150,7 +150,7 @@ function markPath(
 const max = 15;
 const min = 4;
 const initialSize = 6;
-const initialState: TileType[][] = createGrid(initialSize);
+const initialState: TileType[][] = createNewGrid(initialSize);
 
 const gridReducer = (state = initialState, action: GridActionTypes) => {
   switch (action.type) {
@@ -159,7 +159,7 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
         return state;
       }
 
-      return createGrid(state.length + 1);
+      return createNewGrid(state.length + 1);
     }
 
     case SHRINK_GRID: {
@@ -167,7 +167,7 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
         return state;
       }
 
-      return createGrid(state.length - 1);
+      return createNewGrid(state.length - 1);
     }
 
     case SOLVE_GRID: {
