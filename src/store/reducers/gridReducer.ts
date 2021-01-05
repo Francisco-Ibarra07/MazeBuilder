@@ -192,21 +192,10 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
         return state;
       }
 
-      const newGrid = grid.map((row, index) => {
-        if (index === location.row) {
-          return row.map((item, index) => {
-            if (index === location.col) {
-              return newType;
-            } else {
-              return item;
-            }
-          });
-        } else {
-          return row;
-        }
-      });
+      // Update tile
+      grid[location.row][location.col] = newType;
 
-      return newGrid;
+      return deepCopy(grid);
     }
 
     default:
