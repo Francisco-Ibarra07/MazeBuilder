@@ -59,51 +59,53 @@ function solveGrid(grid: TileType[][], start: Location, end: Location) {
     Array.from({ length: grid.length }, () => -1)
   );
 
-  // Perform BFS iteratively
+  // Perform BFS (level order traversal)
   while (!queue.isEmpty()) {
-    // Get next
-    const curr = queue.dequeue();
+    const size = queue.size();
+    for (let i = 0; i < size; i++) {
+      // Get next
+      const curr = queue.dequeue();
 
-    // If queue item has already been seen, skip it
-    if (!curr || visited[curr.row][curr.col] !== -1) {
-      continue;
+      // If queue item has already been seen, skip it
+      if (!curr || visited[curr.row][curr.col] !== -1) {
+        continue;
+      }
+
+      // Mark curr node as visited by marking its dist from start
+      visited[curr.row][curr.col] = currDist;
+
+      // If reached the end, stop bfs search
+      if (sameLocation(curr, end)) {
+        console.log("End was reached. Final dist: ", currDist);
+        return visited;
+      }
+
+      // Add top neighbor
+      if (isValidTile(grid, visited, curr.row - 1, curr.col)) {
+        queue.enqueue({ row: curr.row - 1, col: curr.col });
+      }
+
+      // Add right neighbor
+      if (isValidTile(grid, visited, curr.row, curr.col + 1)) {
+        queue.enqueue({ row: curr.row, col: curr.col + 1 });
+      }
+
+      // Add bottom neighbor
+      if (isValidTile(grid, visited, curr.row + 1, curr.col)) {
+        queue.enqueue({ row: curr.row + 1, col: curr.col });
+      }
+
+      // Add left neighbor
+      if (isValidTile(grid, visited, curr.row, curr.col - 1)) {
+        queue.enqueue({ row: curr.row, col: curr.col - 1 });
+      }
     }
-
-    // Mark curr node as visited by marking its dist from start
-    visited[curr.row][curr.col] = currDist;
-
-    // If reached the end, stop bfs search
-    if (sameLocation(curr, end)) {
-      console.log("End was reached. Final dist: ", currDist);
-      break;
-    }
-
-    // Add top neighbor
-    if (isValidTile(grid, visited, curr.row - 1, curr.col)) {
-      queue.enqueue({ row: curr.row - 1, col: curr.col });
-    }
-
-    // Add right neighbor
-    if (isValidTile(grid, visited, curr.row, curr.col + 1)) {
-      queue.enqueue({ row: curr.row, col: curr.col + 1 });
-    }
-
-    // Add bottom neighbor
-    if (isValidTile(grid, visited, curr.row + 1, curr.col)) {
-      queue.enqueue({ row: curr.row + 1, col: curr.col });
-    }
-
-    // Add left neighbor
-    if (isValidTile(grid, visited, curr.row, curr.col - 1)) {
-      queue.enqueue({ row: curr.row, col: curr.col - 1 });
-    }
-
     // Increment distance
     currDist++;
   }
 
-  console.log("Final visited list: ", visited);
-  console.log("Grid: ", grid);
+  console.log("End never found");
+  console.log("V array: ", visited);
 }
 
 const max = 15;
@@ -128,7 +130,8 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
 
     case SOLVE_GRID:
       console.log("Solving grid:", state);
-      solveGrid(state, action.payload.start, action.payload.end);
+      const r = solveGrid(state, action.payload.start, action.payload.end);
+      console.log("result: ", r);
       return state;
 
     case UPDATE_TILE:
