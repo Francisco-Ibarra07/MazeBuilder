@@ -1,5 +1,5 @@
 import { Location, TileType } from "../../types";
-import { isInBounds } from "../../utils";
+import { deepCopy, isInBounds } from "../../utils";
 import {
   GridActionTypes,
   EXPAND_GRID,
@@ -47,7 +47,7 @@ function isValidTile(grid: TileType[][], visited: number[][], row: number, col: 
   return true;
 }
 
-function solveGrid(grid: TileType[][], start: Location, end: Location) {
+function findPath(grid: TileType[][], start: Location, end: Location): number[][] | undefined {
   // Init queue
   let queue = new Queue<Location>();
   queue.enqueue(start);
@@ -105,7 +105,46 @@ function solveGrid(grid: TileType[][], start: Location, end: Location) {
   }
 
   console.log("End never found");
-  console.log("V array: ", visited);
+  return undefined;
+}
+
+function getNext(visited: number[][], targetNum: number, row: number, col: number): Location {
+  // Top
+  if (isInBounds(visited, row - 1, col) && visited[row - 1][col] === targetNum) {
+    return { row: row - 1, col: col };
+  }
+  // Right
+  else if (isInBounds(visited, row, col + 1) && visited[row][col + 1] === targetNum) {
+    return { row: row, col: col + 1 };
+  }
+  // Bottom
+  else if (isInBounds(visited, row + 1, col) && visited[row + 1][col] === targetNum) {
+    return { row: row + 1, col: col };
+  }
+  // Left
+  else {
+    return { row: row, col: col - 1 };
+  }
+}
+
+function markPath(
+  grid: TileType[][],
+  visited: number[][],
+  start: Location,
+  end: Location
+): TileType[][] {
+  let dist = visited[end.row][end.col];
+  dist--;
+
+  // Start with path directly after the end
+  let curr = getNext(visited, dist, end.row, end.col);
+  while (!sameLocation(curr, start)) {
+    grid[curr.row][curr.col] = TileType.ISPATH;
+    dist--;
+    curr = getNext(visited, dist, curr.row, curr.col);
+  }
+
+  return grid;
 }
 
 const max = 15;
@@ -115,26 +154,36 @@ const initialState: TileType[][] = createGrid(initialSize);
 
 const gridReducer = (state = initialState, action: GridActionTypes) => {
   switch (action.type) {
-    case EXPAND_GRID:
+    case EXPAND_GRID: {
       if (state.length + 1 > max) {
         return state;
       }
 
       return createGrid(state.length + 1);
-    case SHRINK_GRID:
+    }
+
+    case SHRINK_GRID: {
       if (state.length - 1 < min) {
         return state;
       }
 
       return createGrid(state.length - 1);
+    }
 
-    case SOLVE_GRID:
+    case SOLVE_GRID: {
       console.log("Solving grid:", state);
-      const r = solveGrid(state, action.payload.start, action.payload.end);
-      console.log("result: ", r);
-      return state;
+      const start = action.payload.start;
+      const end = action.payload.end;
+      const path = findPath(state, start, end);
+      if (!path) {
+        return state;
+      }
 
-    case UPDATE_TILE:
+      const newGrid = markPath(state, path, start, end);
+      return deepCopy(newGrid);
+    }
+
+    case UPDATE_TILE: {
       const { newType, location } = action.payload;
       const grid = state;
 
@@ -158,6 +207,8 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
       });
 
       return newGrid;
+    }
+
     default:
       return state;
   }
