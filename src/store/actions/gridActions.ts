@@ -2,6 +2,7 @@ import { Location, TileType } from "../../types";
 
 export const EXPAND_GRID = "EXPAND_GRID";
 export const SHRINK_GRID = "SHRINK_GRID";
+export const SOLVE_GRID = "SOLVE_GRID";
 export const UPDATE_TILE = "UPDATE_TILE";
 
 interface ExpandGridAction {
@@ -10,6 +11,14 @@ interface ExpandGridAction {
 
 interface ShrinkGridAction {
   type: typeof SHRINK_GRID;
+}
+
+interface SolveGridAction {
+  type: typeof SOLVE_GRID;
+  payload: {
+    start: Location;
+    end: Location;
+  };
 }
 
 interface UpdateTileAction {
@@ -23,6 +32,7 @@ interface UpdateTileAction {
 export type GridActionTypes =
   | ExpandGridAction
   | ShrinkGridAction
+  | SolveGridAction
   | UpdateTileAction;
 
 export function expandGrid(): GridActionTypes {
@@ -34,6 +44,16 @@ export function expandGrid(): GridActionTypes {
 export function shrinkGrid(): GridActionTypes {
   return {
     type: SHRINK_GRID,
+  };
+}
+
+export function solveGrid(start: Location, end: Location): GridActionTypes {
+  return {
+    type: SOLVE_GRID,
+    payload: {
+      start,
+      end,
+    },
   };
 }
 
