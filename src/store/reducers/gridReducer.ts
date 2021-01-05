@@ -1,11 +1,13 @@
-import { TileType } from "../../types";
+import { Location, TileType } from "../../types";
 import { isInBounds } from "../../utils";
 import {
   GridActionTypes,
   EXPAND_GRID,
   SHRINK_GRID,
+  SOLVE_GRID,
   UPDATE_TILE,
 } from "../actions/gridActions";
+let Queue = require("dsq");
 
 function createGrid(targetSize: number): TileType[][] {
   let grid: TileType[][] = [];
@@ -18,6 +20,94 @@ function createGrid(targetSize: number): TileType[][] {
   }
 
   return grid;
+}
+
+function sameLocation(l1: Location, l2: Location): boolean {
+  return l1.row === l2.row && l1.col === l2.col;
+}
+
+function isValidTile(grid: TileType[][], visited: number[][], row: number, col: number) {
+  // Make sure it's in bounds
+  if (!isInBounds(grid, row, col)) {
+    return false;
+  }
+
+  // Make sure it is a 'ROAD' or a 'FLAG'
+  const tile = grid[row][col];
+  if (!(tile === TileType.ROAD || tile === TileType.FLAG)) {
+    return false;
+  }
+
+  // Make sure it hasn't been seen yet
+  const vState = visited[row][col];
+  if (vState !== -1) {
+    return false;
+  }
+
+  return true;
+}
+
+function solveGrid(grid: TileType[][], start: Location, end: Location) {
+  // Init queue
+  let queue = new Queue();
+  queue.enqueue(start);
+  console.log("Start: ", start);
+
+  // Init dist and visited 2d array
+  let currDist = 0;
+  let visited: number[][] = Array.from({ length: grid.length }, () =>
+    Array.from({ length: grid.length }, () => -1)
+  );
+
+  // Perform BFS iteratively
+  while (queue.count !== 0) {
+    // Get next
+    const curr = queue.dequeue() as Location;
+    // console.log("Next: ", curr);
+    // console.log("Dist: ", currDist);
+    // console.log("Q: ", queue);
+    // console.log("Q count: ", queue.count);
+
+    // If queue item has already been seen, skip it
+    if (visited[curr.row][curr.col] !== -1) {
+      continue;
+    }
+
+    // Mark curr node as visited by marking its dist from start
+    visited[curr.row][curr.col] = currDist;
+
+    // If reached the end, stop bfs search
+    if (sameLocation(curr, end)) {
+      console.log("End was reached. Final dist: ", currDist);
+      break;
+    }
+
+    // Add top neighbor
+    if (isValidTile(grid, visited, curr.row - 1, curr.col)) {
+      queue.enqueue({ row: curr.row - 1, col: curr.col });
+    }
+
+    // Add right neighbor
+    if (isValidTile(grid, visited, curr.row, curr.col + 1)) {
+      queue.enqueue({ row: curr.row, col: curr.col + 1 });
+    }
+
+    // Add bottom neighbor
+    if (isValidTile(grid, visited, curr.row + 1, curr.col)) {
+      queue.enqueue({ row: curr.row + 1, col: curr.col });
+    }
+
+    // Add left neighbor
+    if (isValidTile(grid, visited, curr.row, curr.col - 1)) {
+      queue.enqueue({ row: curr.row, col: curr.col - 1 });
+    }
+
+    // Increment distance
+    currDist++;
+  }
+
+  console.log("Final visited list: ", visited);
+  console.log("Grid: ", grid);
 }
 
 const max = 15;
@@ -39,6 +129,12 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
       }
 
       return createGrid(state.length - 1);
+
+    case SOLVE_GRID:
+      console.log("Solving grid:", state);
+      solveGrid(state, action.payload.start, action.payload.end);
+      return state;
+
     case UPDATE_TILE:
       const { newType, location } = action.payload;
       const grid = state;
