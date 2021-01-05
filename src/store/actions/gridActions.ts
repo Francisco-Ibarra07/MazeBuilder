@@ -57,10 +57,7 @@ export function solveGrid(start: Location, end: Location): GridActionTypes {
   };
 }
 
-export function updateTile(
-  newType: TileType,
-  location: Location
-): GridActionTypes {
+export function updateTile(newType: TileType, location: Location): GridActionTypes {
   return {
     type: UPDATE_TILE,
     payload: {

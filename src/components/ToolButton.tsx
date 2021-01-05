@@ -12,15 +12,7 @@ type ToolButtonProps = {
 };
 
 function ToolButton(props: ToolButtonProps) {
-  const {
-    iconUrl,
-    label,
-    width,
-    type,
-    isDisabled,
-    isActive,
-    onClickHandler,
-  } = props;
+  const { iconUrl, label, width, type, isDisabled, isActive, onClickHandler } = props;
 
   const handleButtonClick = () => {
     onClickHandler(type);

@@ -37,7 +37,4 @@ export function resetFlags(): FlagActionTypes {
   };
 }
 
-export type FlagActionTypes =
-  | AddFlagAction
-  | RemoveFlagAction
-  | ResetFlagsAction;
+export type FlagActionTypes = AddFlagAction | RemoveFlagAction | ResetFlagsAction;

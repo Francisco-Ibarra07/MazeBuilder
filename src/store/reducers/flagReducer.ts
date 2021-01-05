@@ -1,10 +1,5 @@
 import { Location } from "../../types";
-import {
-  ADD_FLAG,
-  REMOVE_FLAG,
-  RESET_FLAGS,
-  FlagActionTypes,
-} from "../actions/flagActions";
+import { ADD_FLAG, REMOVE_FLAG, RESET_FLAGS, FlagActionTypes } from "../actions/flagActions";
 
 const initialState: Location[] = [];
 

@@ -10,13 +10,7 @@ type TileProps = {
 };
 
 function Tile(props: TileProps) {
-  const {
-    type,
-    location,
-    showBorders,
-    onClickHandler,
-    onMouseOverHandler,
-  } = props;
+  const { type, location, showBorders, onClickHandler, onMouseOverHandler } = props;
 
   const handleClick = () => {
     onClickHandler(type, location);
