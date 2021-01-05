@@ -7,7 +7,7 @@ import {
   SOLVE_GRID,
   UPDATE_TILE,
 } from "../actions/gridActions";
-let Queue = require("dsq");
+import Queue from "../../utils/Queue";
 
 function createGrid(targetSize: number): TileType[][] {
   let grid: TileType[][] = [];
@@ -49,7 +49,7 @@ function isValidTile(grid: TileType[][], visited: number[][], row: number, col: 
 
 function solveGrid(grid: TileType[][], start: Location, end: Location) {
   // Init queue
-  let queue = new Queue();
+  let queue = new Queue<Location>();
   queue.enqueue(start);
   console.log("Start: ", start);
 
@@ -60,16 +60,12 @@ function solveGrid(grid: TileType[][], start: Location, end: Location) {
   );
 
   // Perform BFS iteratively
-  while (queue.count !== 0) {
+  while (!queue.isEmpty()) {
     // Get next
-    const curr = queue.dequeue() as Location;
-    // console.log("Next: ", curr);
-    // console.log("Dist: ", currDist);
-    // console.log("Q: ", queue);
-    // console.log("Q count: ", queue.count);
+    const curr = queue.dequeue();
 
     // If queue item has already been seen, skip it
-    if (visited[curr.row][curr.col] !== -1) {
+    if (!curr || visited[curr.row][curr.col] !== -1) {
       continue;
     }
 
