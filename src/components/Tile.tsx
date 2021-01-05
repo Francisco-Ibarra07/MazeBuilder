@@ -54,6 +54,13 @@ function Tile(props: TileProps) {
           width={50}
         />
       )}
+      {type === TileType.FLAG && (
+        <img
+          src="https://cdn3.iconfinder.com/data/icons/flat-icons-web/40/Pin_Flag-256.png"
+          alt="flag"
+          width={50}
+        />
+      )}
     </button>
   );
 }
