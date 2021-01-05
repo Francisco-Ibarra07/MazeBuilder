@@ -23,7 +23,7 @@ function Tile(props: TileProps) {
   let tileColor = "";
   switch (type) {
     case TileType.ROAD:
-      tileColor = `bg-green-400`;
+      tileColor = "bg-green-400";
       break;
     case TileType.BLOCKADE:
       tileColor = "bg-blue-400";
@@ -34,6 +34,9 @@ function Tile(props: TileProps) {
     case TileType.ROADBLOCK:
       tileColor = "bg-orange-400";
       break;
+    case TileType.ISPATH:
+      tileColor = "bg-green-600";
+      break;
   }
 
   let borders = showBorders ? "border-solid border-2 border-black" : "";
@@ -43,7 +46,15 @@ function Tile(props: TileProps) {
       className={tileColor + " hover:opacity-40 " + borders}
       onClick={handleClick}
       onMouseOver={onMouseOver}
-    ></button>
+    >
+      {type === TileType.ISPATH && (
+        <img
+          src="https://cdn2.iconfinder.com/data/icons/small-buttons/64/Red_active_button-128.png"
+          alt="dot"
+          width={50}
+        />
+      )}
+    </button>
   );
 }
 
