@@ -1,13 +1,13 @@
 import React from "react";
 import Grid from "./components/Grid";
-import Header from "./components/Header";
+import Heading from "./components/Heading";
 import Slider from "./components/Slider";
 import Toolbox from "./components/Toolbox";
 
 function App() {
   return (
     <div className="bg-gray-400 flex flex-col min-h-screen m-0 p-0">
-      <Header />
+      <Heading />
 
       {/* Body pane */}
       <div className="flex flex-grow">
