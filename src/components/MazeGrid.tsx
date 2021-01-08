@@ -69,7 +69,7 @@ function MazeGrid(props: MazeGridProps) {
   return (
     <Grid
       w={3 / 4}
-      h="60vh"
+      minHeight="60vh"
       bg="blue.500"
       onMouseDown={() => setMouseState(MouseState.DOWN)}
       onMouseUp={() => setMouseState(MouseState.UP)}
