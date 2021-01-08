@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import Tile from "./Tile";
-import { Location, MouseState, TileType } from "../types";
+import { Grid } from "@chakra-ui/react";
 import { connect, ConnectedProps } from "react-redux";
+import { Location, MouseState, TileType } from "../types";
 import { RootState } from "../store/reducers/rootReducer";
 import { updateTile } from "../store/actions/gridActions";
 import { addFlag, removeFlag } from "../store/actions/flagActions";
+import MazeTile from "./MazeTile";
 
 // Connect Redux
 const mapStateToProps = (state: RootState) => ({
@@ -14,9 +15,9 @@ const mapStateToProps = (state: RootState) => ({
 });
 const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
-type GridProps = PropsFromRedux;
+type MazeGridProps = PropsFromRedux;
 
-function Grid(props: GridProps) {
+function MazeGrid(props: MazeGridProps) {
   const { dispatch, grid, tooltip, flagLocations } = props;
   const [mouseState, setMouseState] = useState<MouseState>(MouseState.UP);
 
@@ -50,7 +51,7 @@ function Grid(props: GridProps) {
     for (let row = 0; row < grid.length; row++) {
       for (let col = 0; col < grid[row].length; col++) {
         list.push(
-          <Tile
+          <MazeTile
             key={`tile-row${row}-col${col}`}
             type={grid[row][col]}
             location={{ row, col }}
@@ -65,23 +66,19 @@ function Grid(props: GridProps) {
     return list;
   };
 
-  const styles = {
-    gridContainer: {
-      gridTemplateRows: `repeat(${grid.length}, minmax(0, 1fr)`,
-      gridTemplateColumns: `repeat(${grid.length}, minmax(0, 1fr)`,
-    },
-  };
-
   return (
-    <div
-      className="w-full h-full grid"
-      style={styles.gridContainer}
+    <Grid
+      w={3 / 4}
+      h="60vh"
+      bg="blue.500"
       onMouseDown={() => setMouseState(MouseState.DOWN)}
       onMouseUp={() => setMouseState(MouseState.UP)}
+      templateRows={`repeat(${grid.length}, 1fr)`}
+      templateColumns={`repeat(${grid.length}, 1fr)`}
     >
       {flattenGrid()}
-    </div>
+    </Grid>
   );
 }
 
-export default connector(Grid);
+export default connector(MazeGrid);

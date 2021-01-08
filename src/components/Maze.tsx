@@ -10,6 +10,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React from "react";
+import MazeGrid from "./MazeGrid";
 import ToolBox from "./ToolBox";
 
 function Maze() {
@@ -20,22 +21,11 @@ function Maze() {
         <ToolBox />
 
         {/* Maze grid */}
-        <Grid
-          w={3 / 4}
-          h="60vh"
-          bg="blue.500"
-          templateRows="repeat(2, 1fr)"
-          templateColumns="repeat(2, 1fr)"
-        >
-          <Box>Hello</Box>
-          <Box>Hello</Box>
-          <Box>Hello</Box>
-          <Box>Hello</Box>
-        </Grid>
+        <MazeGrid />
       </Flex>
 
       {/* Slider */}
-      <Slider aria-label="grid-slider" defaultValue={10} mt={4} w={3 / 8} min={4} max={16}>
+      <Slider aria-label="grid-slider" defaultValue={10} mt={2} w={3 / 8} min={4} max={16}>
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>
@@ -44,7 +34,9 @@ function Maze() {
         </SliderThumb>
       </Slider>
 
-      <Button bg="purple.200">Solve!</Button>
+      <Button bg="purple.200" mt={1}>
+        Solve!
+      </Button>
     </Flex>
   );
 }
