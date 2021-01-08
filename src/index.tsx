@@ -1,9 +1,8 @@
 import React from "react";
+import App from "./App";
+import store from "./store";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import store from "./store";
-import "./index.css";
-import App from "./App";
 import { ChakraProvider, ColorModeScript, extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
