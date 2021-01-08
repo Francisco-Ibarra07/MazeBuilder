@@ -2,11 +2,12 @@ import React from "react";
 import { Box, Flex, Image, Link, Text, Spacer } from "@chakra-ui/react";
 
 function TopHeading() {
+  const widthSize = "232px";
   return (
     <Box bg="blue.400" p={4} borderColor="blue.300" borderBottom="1px">
       <Flex justifyContent="space-between">
         {/* Image + Name */}
-        <Flex>
+        <Flex minWidth={widthSize}>
           <Image
             src="https://lh6.googleusercontent.com/FI-VrYVCsSLDa1SWxWGZxQPbeaZZojxAW--6vk3tZxoXUQq9NXsPJXako_JVXAbk0nGmpQw9LtnO2uYnU-5SUpP1wrMYqjSBYWeJld42FRowXWv0-ZyV-65QuXaRkJVA77IEsZIz"
             alt="Francisco"
@@ -20,13 +21,13 @@ function TopHeading() {
           </Flex>
         </Flex>
         {/* Project title */}
-        <Flex alignItems="center" justifyContent="center">
-          <Text color="white" fontSize="2xl">
+        <Flex minWidth={widthSize} alignItems="center" justifyContent="center">
+          <Text color="white" fontSize="4xl">
             Maze Builder
           </Text>
         </Flex>
         {/* Media links */}
-        <Flex alignItems="center">
+        <Flex minWidth={widthSize} alignItems="center" justifyContent="end">
           <Link href="https://linkedin.com/in/franciscoibarra/" isExternal>
             <Image
               src="https://cdn4.iconfinder.com/data/icons/social-icons-16/512/LinkedIn-256.png"
