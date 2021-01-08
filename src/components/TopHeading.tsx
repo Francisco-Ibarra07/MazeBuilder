@@ -1,5 +1,8 @@
 import React from "react";
-import { Box, Flex, Image, Link, Text, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
+import avatarIcon from "../resources/icons/avatar-icon.png";
+import linkedinIcon from "../resources/icons/linkedin-icon.png";
+import githubIcon from "../resources/icons/github-icon.png";
 
 function TopHeading() {
   const widthSize = "232px";
@@ -7,41 +10,29 @@ function TopHeading() {
     <Box bg="blue.400" p={4} borderColor="blue.300" borderBottom="1px">
       <Flex justifyContent="space-between">
         {/* Image + Name */}
-        <Flex minWidth={widthSize}>
-          <Image
-            src="https://lh6.googleusercontent.com/FI-VrYVCsSLDa1SWxWGZxQPbeaZZojxAW--6vk3tZxoXUQq9NXsPJXako_JVXAbk0nGmpQw9LtnO2uYnU-5SUpP1wrMYqjSBYWeJld42FRowXWv0-ZyV-65QuXaRkJVA77IEsZIz"
-            alt="Francisco"
-            w="60px"
-            mr={3}
-          />
+        <Flex>
+          <Image src={avatarIcon} alt="Francisco" boxSize="60px" mr={3} />
           <Flex alignItems="center" justifyContent="center">
             <Text color="white" fontSize="2xl">
               Francisco Ibarra
             </Text>
           </Flex>
         </Flex>
+
         {/* Project title */}
-        <Flex minWidth={widthSize} alignItems="center" justifyContent="center">
+        <Flex alignItems="center" justifyContent="center">
           <Text color="white" fontSize="4xl">
             Maze Builder
           </Text>
         </Flex>
+
         {/* Media links */}
-        <Flex minWidth={widthSize} alignItems="center" justifyContent="end">
+        <Flex alignItems="center" justifyContent="end">
           <Link href="https://linkedin.com/in/franciscoibarra/" isExternal>
-            <Image
-              src="https://cdn4.iconfinder.com/data/icons/social-icons-16/512/LinkedIn-256.png"
-              alt="linkedin"
-              boxSize="35px"
-              mr={3}
-            />
+            <Image src={linkedinIcon} alt="linkedin" boxSize="40px" mr={3} />
           </Link>
           <Link href="https://github.com/Francisco-Ibarra07" isExternal>
-            <Image
-              src="https://cdn1.iconfinder.com/data/icons/logotypes/32/github-256.png"
-              alt="github"
-              boxSize="30px"
-            />
+            <Image src={githubIcon} alt="github" boxSize="35px" />
           </Link>
         </Flex>
       </Flex>
