@@ -31,7 +31,6 @@ function Maze(props: MazeProps) {
 
   const handleSolve = () => {
     if (flagLocations.length !== 2) {
-      console.log("Not enough flags on the board");
       return;
     }
 
@@ -44,7 +43,6 @@ function Maze(props: MazeProps) {
 
   const handleSliderChange = (newSliderValue: number) => {
     if (lastSliderValue === newSliderValue) {
-      console.log("same");
       return;
     }
 
@@ -61,37 +59,38 @@ function Maze(props: MazeProps) {
 
         {/* Maze grid */}
         <MazeGrid />
+
+        <Slider
+          mt={2}
+          w={3 / 8}
+          min={4}
+          max={16}
+          value={sliderValue}
+          aria-label="grid-slider"
+          focusThumbOnChange={false}
+          onChange={(val) => setSliderValue(val)}
+          onChangeEnd={handleSliderChange}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb boxSize={12}>
+            <Tooltip>{`${sliderValue}x${sliderValue}`}</Tooltip>
+          </SliderThumb>
+        </Slider>
+
+        <Button
+          mt={2}
+          fontSize="lg"
+          variant="outline"
+          colorScheme="blue"
+          onClick={handleSolve}
+          isLoading={isSolving}
+          isDisabled={flagLocations.length !== 2}
+        >
+          Solve!
+        </Button>
       </Flex>
-
-      {/* Slider */}
-      <Slider
-        mt={2}
-        w={3 / 8}
-        min={4}
-        max={16}
-        value={sliderValue}
-        aria-label="grid-slider"
-        focusThumbOnChange={false}
-        onChange={(val) => setSliderValue(val)}
-        onChangeEnd={handleSliderChange}
-      >
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb boxSize={12}>
-          <Tooltip>{`${sliderValue}x${sliderValue}`}</Tooltip>
-        </SliderThumb>
-      </Slider>
-
-      <Button
-        mt={1}
-        variant="outline"
-        onClick={handleSolve}
-        isLoading={isSolving}
-        isDisabled={flagLocations.length !== 2}
-      >
-        Solve!
-      </Button>
     </Flex>
   );
 }
