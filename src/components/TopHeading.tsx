@@ -5,7 +5,7 @@ import linkedinIcon from "../resources/icons/linkedin-icon.png";
 import githubIcon from "../resources/icons/github-icon.png";
 
 function TopHeading() {
-  const widthSize = "232px";
+  // const widthSize = "232px";
   return (
     <Box bg="blue.400" p={4} borderColor="blue.300" borderBottom="1px">
       <Flex justifyContent="space-between">

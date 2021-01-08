@@ -13,11 +13,10 @@ import ToolBox from "./ToolBox";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store/reducers/rootReducer";
 import { resetFlags } from "../store/actions/flagActions";
-import { expandGrid, shrinkGrid, solveGrid } from "../store/actions/gridActions";
+import { solveGrid, resizeGrid } from "../store/actions/gridActions";
 
 // Connect Redux
 const mapStateToProps = (state: RootState) => ({
-  grid: state.grid,
   flagLocations: state.flagLocations,
 });
 const connector = connect(mapStateToProps);
@@ -25,18 +24,10 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type MazeProps = PropsFromRedux;
 
 function Maze(props: MazeProps) {
-  const { grid, flagLocations, dispatch } = props;
+  const { flagLocations, dispatch } = props;
   const [isSolving, setIsSolving] = useState(false);
-
-  const handleDecrement = () => {
-    dispatch(shrinkGrid());
-    dispatch(resetFlags());
-  };
-
-  const handleIncrement = () => {
-    dispatch(expandGrid());
-    dispatch(resetFlags());
-  };
+  const [sliderValue, setSliderValue] = useState(10);
+  const [lastSliderValue, setLastSliderValue] = useState(10);
 
   const handleSolve = () => {
     if (flagLocations.length !== 2) {
@@ -51,6 +42,17 @@ function Maze(props: MazeProps) {
     setIsSolving(false);
   };
 
+  const handleSliderChange = (newSliderValue: number) => {
+    if (lastSliderValue === newSliderValue) {
+      console.log("same");
+      return;
+    }
+
+    dispatch(resizeGrid(newSliderValue));
+    dispatch(resetFlags());
+    setLastSliderValue(newSliderValue);
+  };
+
   return (
     <Flex flexDirection="column" justifyContent="center" alignItems="center" mt={6}>
       <Flex w="100%" flexDirection="column" justifyContent="center" alignItems="center">
@@ -62,12 +64,22 @@ function Maze(props: MazeProps) {
       </Flex>
 
       {/* Slider */}
-      <Slider aria-label="grid-slider" defaultValue={10} mt={2} w={3 / 8} min={4} max={16}>
+      <Slider
+        mt={2}
+        w={3 / 8}
+        min={4}
+        max={16}
+        value={sliderValue}
+        aria-label="grid-slider"
+        focusThumbOnChange={false}
+        onChange={(val) => setSliderValue(val)}
+        onChangeEnd={handleSliderChange}
+      >
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>
-        <SliderThumb boxSize={10}>
-          <Tooltip label="4x4">4x4</Tooltip>
+        <SliderThumb boxSize={12}>
+          <Tooltip>{`${sliderValue}x${sliderValue}`}</Tooltip>
         </SliderThumb>
       </Slider>
 
