@@ -1,38 +1,18 @@
 import React from "react";
-import Grid from "./components/Grid";
-import Heading from "./components/Heading";
-import Slider from "./components/Slider";
-import Toolbox from "./components/Toolbox";
+import { Box } from "@chakra-ui/react";
+import TopHeading from "./components/TopHeading";
+import SubHeading from "./components/SubHeading";
+import Maze from "./components/Maze";
 
 function App() {
   return (
-    <div className="bg-gray-400 flex flex-col min-h-screen m-0 p-0">
-      <Heading />
+    <Box>
+      <TopHeading />
 
-      {/* Body pane */}
-      <div className="flex flex-grow">
-        <div className="flex flex-col justify-center min-w-full">
-          <div className="flex min-w-full h-4/5">
-            <Toolbox />
-            {/* Grid + slider container */}
-            <div className="flex flex-col ml-44 w-3/4">
-              {/* Grid Container */}
-              <div className="w-full h-5/6">
-                <div className="flex justify-center items-center h-full">
-                  <Grid />
-                </div>
-              </div>
-              {/* Slider container */}
-              <div className="h-1/6">
-                <div className="flex justify-center items-center h-full">
-                  <Slider />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <SubHeading />
+
+      <Maze />
+    </Box>
   );
 }
 
