@@ -52,7 +52,6 @@ function findPath(grid: TileType[][], start: Location, end: Location): number[][
   // Init queue
   let queue = new Queue<Location>();
   queue.enqueue(start);
-  console.log("Start: ", start);
 
   // Init dist and visited 2d array
   let currDist = 0;
@@ -77,7 +76,6 @@ function findPath(grid: TileType[][], start: Location, end: Location): number[][
 
       // If reached the end, stop bfs search
       if (sameLocation(curr, end)) {
-        console.log("End was reached. Final dist: ", currDist);
         return visited;
       }
 
@@ -105,7 +103,7 @@ function findPath(grid: TileType[][], start: Location, end: Location): number[][
     currDist++;
   }
 
-  console.log("End never found");
+  console.log("End never found: ", visited);
   return undefined;
 }
 

@@ -16,7 +16,6 @@ const flagReducer = (state = initialState, action: FlagActionTypes) => {
       state.forEach((element, index) => {
         if (element.row === targetFlag.row && element.col === targetFlag.col) {
           targetIndex = index;
-          console.log("TargetIndex: ", targetIndex);
         }
       });
       state.splice(targetIndex, 1);
