@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, Text, Spacer } from "@chakra-ui/react";
 
-function Heading() {
+function TopHeading() {
   return (
-    <Box bg="blue.300" p={4} borderColor="blue.300" borderBottom="1px">
+    <Box bg="blue.400" p={4} borderColor="blue.300" borderBottom="1px">
       <Flex justifyContent="space-between">
         {/* Image + Name */}
         <Flex>
@@ -48,4 +48,4 @@ function Heading() {
   );
 }
 
-export default Heading;
+export default TopHeading;
