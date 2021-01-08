@@ -7,24 +7,22 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Tooltip,
+  Button,
 } from "@chakra-ui/react";
 import React from "react";
+import ToolBox from "./ToolBox";
 
 function Maze() {
   return (
-    <Flex flexDirection="column" justifyContent="center" alignItems="center" mt={8}>
+    <Flex flexDirection="column" justifyContent="center" alignItems="center" mt={6}>
       <Flex w="100%" flexDirection="column" justifyContent="center" alignItems="center">
         {/* Tools */}
-        <Flex w={3 / 4} h="80px" borderTopRadius="20px" bg="green.200">
-          <Box>Tool1</Box>
-          <Box>Tool2</Box>
-          <Box>Tool3</Box>
-          <Box>Tool4</Box>
-        </Flex>
+        <ToolBox />
 
         {/* Maze grid */}
         <Grid
           w={3 / 4}
+          h="60vh"
           bg="blue.500"
           templateRows="repeat(2, 1fr)"
           templateColumns="repeat(2, 1fr)"
@@ -45,6 +43,8 @@ function Maze() {
           <Tooltip label="4x4">4x4</Tooltip>
         </SliderThumb>
       </Slider>
+
+      <Button bg="purple.200">Solve!</Button>
     </Flex>
   );
 }

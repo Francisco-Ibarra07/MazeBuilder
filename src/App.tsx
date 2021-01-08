@@ -9,7 +9,7 @@ function App() {
     <Box>
       <TopHeading />
 
-      <SubHeading />
+      {/* <SubHeading /> */}
 
       <Maze />
     </Box>
