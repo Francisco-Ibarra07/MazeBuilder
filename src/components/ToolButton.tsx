@@ -1,40 +1,32 @@
 import React from "react";
 import { TileType } from "../types";
+import { Flex, Image, Text } from "@chakra-ui/react";
 
 type ToolButtonProps = {
-  iconUrl: string;
+  iconSrc: string;
   label: string;
-  width: number;
+  boxSize: string;
+  fontSize: string;
+  hoverColor: string;
   type: TileType;
   isDisabled?: boolean;
   isActive?: boolean;
-  onClickHandler: (newType: TileType) => void;
+  onClickHandler?: (newType: TileType) => void;
 };
 
 function ToolButton(props: ToolButtonProps) {
-  const { iconUrl, label, width, type, isDisabled, isActive, onClickHandler } = props;
-
-  const handleButtonClick = () => {
-    onClickHandler(type);
-  };
-
-  const styles = {
-    button: {
-      border: isActive && !isDisabled ? "2px solid #4ADE80" : "",
-      backgroundColor: isDisabled ? "#e5e5e5" : "",
-      cursor: isDisabled ? "not-allowed" : "",
-    },
-  };
-
   return (
-    <button
-      className="flex flex-col justify-center my-2 min-w-full hover:bg-yellow-200 focus:outline-none"
-      onClick={handleButtonClick}
-      style={styles.button}
+    <Flex
+      as="button"
+      mx={5}
+      borderRadius="md"
+      _hover={{ bg: props.hoverColor }}
+      flexDirection="column"
+      alignItems="center"
     >
-      <img className="m-auto" src={iconUrl} alt={label} width={width} />
-      <span className="m-auto text-lg">{label}</span>
-    </button>
+      <Image src={props.iconSrc} alt={props.label} boxSize={props.boxSize} />
+      <Text fontSize={props.fontSize}>{props.label}</Text>
+    </Flex>
   );
 }
 
