@@ -53,8 +53,8 @@ function MazeTile(props: MazeTileProps) {
       justifyContent="center"
       alignItems="center"
     >
-      {props.type === TileType.ISPATH && <Image src={markerIcon} alt="ispath" boxSize="50px" />}
-      {props.type === TileType.FLAG && <Image src={flagIcon} alt="flag" boxSize="50px" />}
+      {props.type === TileType.ISPATH && <Image src={markerIcon} alt="ispath" boxSize="40px" />}
+      {props.type === TileType.FLAG && <Image src={flagIcon} alt="flag" boxSize="40px" />}
     </Flex>
   );
 }
