@@ -6,6 +6,7 @@ import {
   SHRINK_GRID,
   SOLVE_GRID,
   UPDATE_TILE,
+  RESIZE_GRID,
 } from "../actions/gridActions";
 import Queue from "../../utils/Queue";
 
@@ -147,9 +148,9 @@ function markPath(
   return grid;
 }
 
-const max = 15;
+const max = 16;
 const min = 4;
-const initialSize = 6;
+const initialSize = 10;
 const initialState: TileType[][] = createNewGrid(initialSize);
 
 const gridReducer = (state = initialState, action: GridActionTypes) => {
@@ -168,6 +169,14 @@ const gridReducer = (state = initialState, action: GridActionTypes) => {
       }
 
       return createNewGrid(state.length - 1);
+    }
+
+    case RESIZE_GRID: {
+      if (state.length === action.payload.newSize) {
+        return state;
+      }
+
+      return createNewGrid(action.payload.newSize);
     }
 
     case SOLVE_GRID: {
