@@ -24,10 +24,10 @@ Coming soon...
 - [x] Create flag reducer
 - [x] Add marker for current active tool
 - [x] Add mouseover for easy path building
-- [] Create solve() function
-- [] Finish Header component
-- [] Finish Tooltip component
-- [] Finish slider component
+- [x] Create solve() function
+- [x] Finish Header component
+- [x] Finish Tooltip component
+- [x] Finish slider component
 
 ## Running the App Locally
 
@@ -38,7 +38,7 @@ then after cloning the code, you need to run
 npm install
 ```
 
-to install the dependencies and devDependencies required for the app.
+to install the dependencies required for the app.
 
 then run
 
